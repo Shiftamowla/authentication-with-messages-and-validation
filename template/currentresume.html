@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: rgb(0, 157, 255);;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(3, 76, 122);
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+
+<h3>Resume Form</h3>
+{% if messages %}
+            
+{% for message in messages %}
+
+{% if message.tags == 'success' %}
+<div class="alert alert-success" role="alert">
+  This is a Successfull!
+</div>
+    
+{% endif %}
+    
+    
+{% endfor %}
+    
+    
+{% endif %}
+
+<div>
+  <form action="{% url 'currentresume' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="lname">First Name</label>
+    <input type="text" id="lname" value="{{user.first_name}}" name="first_name" >
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" value="{{user.last_name}}" name="last_name" >
+
+    </select>
+    <label for="Gender">Gender:</label>
+    <select id="Gender" name="Gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+
+    <label for="lname">Designation</label>
+    <input type="text" id="lname" name="designation" >
+
+    <label for="lname">Contact</label>
+    <input type="text" id="lname" name="contact" >
+
+    <label for="lname">Linkdin</label>
+    <input type="text" id="lname" name="linkdin" >
+
+    <label for="lname">Image</label>
+    <input type="file" id="lname" name="img" >
+
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>
+
+
+{% endblock body %}

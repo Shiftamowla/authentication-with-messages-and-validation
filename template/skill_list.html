@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(0, 157, 255);
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h3>Skill List</h3>
+
+
+
+<table id="customers">
+  <tr>
+    <th>skill_name</th>
+    <th>proficiency_level</th>
+    <th>Action</th>
+ </tr>
+  
+  {% for i in myskill %}
+    
+  
+    
+  <tr>
+    <td>{{i.skill_name}}</td>
+    <td>{{i.proficiency_level}}</td>
+    <td>
+       <a href="{% url 'sdeletepage' i.id %}">Delete</a>-
+       <a href="{% url 'editSkill' i.id %}">Edit</a>
+    </td>
+  {% endfor %}
+
+</table>
+<h3>Language List</h3>
+
+
+
+<table id="customers">
+  <tr>
+    <th>Language Name</th>
+    <th>Proficiency Level</th>
+    <th>Action</th>
+ </tr>
+  
+  {% for i in mylang %}
+    
+  
+    
+  <tr>
+    <td>{{i.language_name}}</td>
+    <td>{{i.proficiency_level}}</td>
+    <td>
+       <a href="{% url 'ldeletepage' i.id %}">Delete</a>
+    </td>
+  {% endfor %}
+
+</table>
+
+<h3>Interest List</h3>
+
+
+
+<table id="customers">
+  <tr>
+    <th>Interest Name</th>
+    <th>Action</th>
+ </tr>
+  
+  {% for i in myint %}
+    
+  
+    
+  <tr>
+    <td>{{i.title}}</td>
+    <td>
+       <a href="{% url 'ideletepage' i.id %}">Delete</a>
+
+    </td>
+  {% endfor %}
+
+</table>
+
+<h3>Experience List</h3>
+
+
+
+<table id="customers">
+  <tr>
+    <th>Experience</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Action</th>
+ </tr>
+  
+  {% for i in myexp %}
+    
+  
+    
+  <tr>
+    <td>{{i.title}}</td>
+    <td>{{i.start_date}}</td>
+    <td>{{i.end_date}}</td>
+    <td>
+       <a href="{% url 'exdeletepage' i.id %}">Delete</a>
+
+    </td>
+  {% endfor %}
+
+</table>
+
+<h3>Education List</h3>
+
+<table id="customers">
+  <tr>
+    <th>Education</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Action</th>
+ </tr>
+  
+  {% for i in myedu %}
+    
+  
+    
+  <tr>
+    <td>{{i.type}}</td>
+    <td>{{i.start_date}}</td>
+    <td>{{i.end_date}}</td>
+    <td>
+       <a href="{% url 'edeletepage' i.id %}">Delete</a>
+
+    </td>
+  {% endfor %}
+
+</table>
+
+</body>
+</html>
+
+{% endblock body %}
+

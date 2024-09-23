@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume of {{ user.first_name }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #3498db;
+            margin-bottom: 15px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #3498db;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        .contact-info p, .social-links p {
+            margin: 5px 0;
+        }
+        .social-links a {
+            margin-right: 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+        .skills, .experience, .education, .languages, .interests {
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .skills ul, .experience ul, .education ul, .languages ul, .interests ul {
+            list-style: none;
+            padding: 0;
+        }
+        .skills li, .experience li, .education li, .languages li, .interests li {
+            margin-bottom: 5px;
+        }
+        .profile-actions a {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff; /* Button color */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .profile-actions a:hover {
+            background-color: #0056b3; /* Darker on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            {% for i in resume %}
+                <img height="180px" width="250px" src="/{{i.img}}" alt="Profile Picture of {{ i.user.first_name }} {{ i.user.last_name }}" class="profile-pic">
+                <h1>{{ i.user.first_name }} {{ i.user.last_name }}</h1>
+                <h2>{{ i.designation }}</h2>
+        </header>
+
+        <div class="profile-actions">
+            <a href="{% url 'skill_list' %}">All Lists</a>
+            <br>
+            <a href="{% url 'addsLanguage' %}">Add Language</a>
+            <a href="{% url 'addSkill' %}">Add Skill</a>
+            <a href="{% url 'addEducation' %}">Add Education</a>
+            <a href="{% url 'addExperience' %}">Add Experience</a>
+            <a href="{% url 'addsInterest' %}">Add Interest</a>
+            <br>
+            
+        </div>
+
+        <div class="section contact-info">
+            <h2>Contact Information</h2>
+            <p><strong>Phone:</strong> {{ i.contact }}</p>
+            <p><strong>LinkedIn:</strong> <a href="{{ i.linkdin }}" target="_blank">{{ i.linkdin }}</a></p>
+            <p><strong>FB:</strong> <a href="{{ i.linkdin }}" target="_blank">{{ i.linkdin }}</a></p>
+            <p><strong>Insta:</strong> <a href="{{ i.linkdin }}" target="_blank">{{ i.linkdin }}</a></p>
+            <p><strong>Git:</strong> <a href="{{ i.linkdin }}" target="_blank">{{ i.linkdin }}</a></p>
+        </div>
+        {% endfor %}
+
+
+        <div class="section experience">
+            <h2>Experience</h2>
+            <ul>
+                {% for i in Experience %}
+                    <li>{{ i.title }} - {{ i.start_date }} - {{ i.end_date }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section skills">
+            <h2>Skills</h2>
+            <ul>
+                {% for i in Skills %}
+                    <li>{{ i.skill_name }} - {{ i.proficiency_level }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section education">
+            <h2>Education</h2>
+            <ul>
+                {% for i in Education %}
+                    <li>{{ i.type }} - {{ i.start_date }} {{ i.end_date }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section languages">
+            <h2>Languages</h2>
+            <ul>
+                {% for i in Language %}
+                    <li>{{ i.language_name }} - {{ i.proficiency_level }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section interests">
+            <h2>Interests</h2>
+            <ul>
+                {% for i in Interest %}
+                    <li>{{ i.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+    

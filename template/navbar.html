@@ -1,0 +1,11 @@
+<ul>
+  {% if user.user_type == 'viewer' %}
+  <li><a href="{% url 'home' %}">Home</a></li>
+  {% elif user.user_type == 'admin' %}
+    <li><a href="{% url 'home' %}">Home</a></li>
+  {% endif %}
+  <li><a href="{% url 'currentresume' %}">currentresume</a></li>
+  <li><a href="{% url 'profilepage' %}">profilepage</a></li>
+  <li><a href="{% url 'logoutpage' %}">Logout</a></li>
+
+</ul>

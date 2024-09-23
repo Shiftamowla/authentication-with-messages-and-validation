@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: rgb(0, 157, 255);;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(3, 76, 122);
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<body>
+
+<h3>Add Skill</h3>
+
+<div>
+  <form action="{% url 'editSkill' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label> Skill Name </label>
+    <select id="id" name="id">
+          
+       <option value="" disabled selected>Select Skill</option>
+       {% for i in skill %}
+
+       
+       <option value="{{i.id}}" 
+       {% if skill.skill_name == i.skill_name %}selected
+        
+       {% endif %}
+        >{{i.skill_name}}</option>
+       {% endfor %}
+    </select>
+
+
+
+    <label for="Gender">Proficiency Level:</label>
+    <select id="Gender" name="proficiency_level" required>
+        <option value="high">High</option>
+        <option value="mideum">Mideum</option>
+        <option value="low">Low</option>
+    </select>
+
+
+
+
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>
+
+
+{% endblock body %}

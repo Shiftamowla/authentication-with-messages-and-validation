@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    
+
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: rgb(0, 157, 255);;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: rgb(3, 76, 122);
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<body>
+
+<h3>Add Language</h3>
+
+<div>
+  <form action="{% url 'addsLanguage' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+
+    <label>Language</label>
+    <select id="la_id" name="la_id">
+          
+       <option value="" disabled selected>Select Language</option>
+       {% for i in lan %}
+
+       <option value="{{i.id}}">{{i.language_name}}</option>
+       {% endfor %}
+    </select>
+
+    <label for="proficiency_level">Proficiency Level:</label>
+    <select id="proficiency_level" name="proficiency_level" required>
+        <option value="high">High</option>
+        <option value="mideum">Mideum</option>
+        <option value="low">Low</option>
+    </select>
+
+
+
+
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>
+
+
+{% endblock body %}
